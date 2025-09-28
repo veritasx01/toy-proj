@@ -1,12 +1,14 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.scss";
+import { HomePage } from "./Pages/homePage";
+import { NavBar } from "./components/NavBar";
 
 function App() {
   return (
     <>
       <BrowserRouter>
+        <NavBar />
         <Routes>
-          <Route path="/"></Route>
+          <Route path="/" element={<HomePage />}></Route>
         </Routes>
       </BrowserRouter>
     </>

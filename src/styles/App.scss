@@ -1,0 +1,28 @@
+@use "base" as *;
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.nav-bar {
+  position: absolute;
+  background: #eee;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 4vh;
+  padding: 1rem;
+}
+.nav-bar section {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+}
+.nav-bar nav {
+  display: grid;
+  grid-column: 3;
+  grid-auto-flow: column;
+  gap: 3rem;
+}
