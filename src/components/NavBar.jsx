@@ -5,7 +5,7 @@ export function NavBar() {
     <header className="nav-bar">
       <section>
         <nav>
-          <NavLink>option 1</NavLink>
+          <NavLink to={"/toys"}>toys</NavLink>
           <NavLink>option 2</NavLink>
           <NavLink>option 3</NavLink>
         </nav>

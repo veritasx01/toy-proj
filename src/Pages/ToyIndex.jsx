@@ -13,10 +13,8 @@ export function ToyIndex() {
         onClick={() => {
           const toys = generateDummyToys();
           setToys(toys);
-          console.log(toys);
         }}
-      >
-        {JSON.stringify(toys, null, 2)}
+      >generate toys
       </button>
       <ToyFilter />
       <ToyList toys={toys} />
