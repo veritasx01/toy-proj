@@ -1,10 +1,16 @@
-import { generateDummyToys } from "../utils/toy-service.js";
+import { generateDummyToys } from "../utils/toy-service";
+import { setToys } from "../store/store";
 
 export function HomePage() {
   return (
     <>
       <h1>home page placeholder</h1>
-      <button onClick={() => console.log(generateDummyToys())}></button>
+      <button
+        onClick={() => {
+          const toys = generateDummyToys();
+          console.log(toys);
+        }}
+      ></button>
     </>
   );
 }

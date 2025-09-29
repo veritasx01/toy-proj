@@ -1,17 +1,21 @@
 import { base64Id } from './helpers';
 
-function query(entityType, delay = 10) {
+// TODO: add batch get, post, put, remove
+// by checking if the input is an array,
+// or with different batch funcs
+
+export function query(entityType, delay = 10) {
   var entities = JSON.parse(localStorage.getItem(entityType)) || [];
   return new Promise((resolve) => setTimeout(() => resolve(entities), delay));
 }
 
-async function get(entityType, entityId) {
+export async function get(entityType, entityId) {
   const entities = await query(entityType);
   const entity = entities.find((entity) => entity._id === entityId);
   return entity || null;
 }
 
-async function post(entityType, newEntity) {
+export async function post(entityType, newEntity) {
   newEntity._id = base64Id();
   const entities = await query(entityType);
   entities.push(newEntity);
@@ -19,7 +23,7 @@ async function post(entityType, newEntity) {
   return newEntity;
 }
 
-async function put(entityType, updatedEntity) {
+export async function put(entityType, updatedEntity) {
   const entities = await query(entityType);
   const idx = entities.findIndex((ent) => ent._id === updatedEntity._id);
   if (idx < 0) return null;
@@ -29,7 +33,7 @@ async function put(entityType, updatedEntity) {
   return entityToUpdate;
 }
 
-async function remove(entityType, entityId) {
+export async function remove(entityType, entityId) {
   const entities = await query(entityType);
   const idx = entities.findIndex((ent) => ent._id === entityId);
   if (idx < 0) return null;
