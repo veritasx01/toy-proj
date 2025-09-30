@@ -1,9 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
-import { HomePage } from "./Pages/HomePage";
+import { HomePage } from "./pages/HomePage";
 import { NavBar } from "./components/NavBar";
 import { store } from "./store/store";
-import { ToyIndex } from "./Pages/ToyIndex";
+import { ToyIndex } from "./pages/ToyIndex";
 
 function App() {
   return (

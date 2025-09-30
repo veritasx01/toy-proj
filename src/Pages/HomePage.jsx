@@ -1,5 +1,4 @@
 import { generateDummyToys } from "../utils/toy-service";
-import { setToys } from "../store/store";
 
 export function HomePage() {
   return (

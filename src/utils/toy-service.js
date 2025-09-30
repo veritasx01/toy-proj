@@ -48,8 +48,7 @@ function saveToStorage(key, value) {
 function createToys(amount = 5) {
   let toys = loadFromStorage(TOY_KEY);
   if (!toys || !toys.length) {
-    toys = [];
-    toys.push({...createToys(amount)});
+    toys = generateDummyToys(amount);
     saveToStorage(TOY_KEY, toys);
   }
 }
