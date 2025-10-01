@@ -7,7 +7,8 @@ export function NavBar() {
         <nav>
           <NavLink to={"/"}>home</NavLink>
           <NavLink to={"/toys"}>toys</NavLink>
-          <NavLink>option 3</NavLink>
+          <NavLink to={"/edit"}>edit</NavLink>
+          <NavLink to={"/details"}>details</NavLink>
         </nav>
       </section>
     </header>

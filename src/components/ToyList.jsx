@@ -15,6 +15,7 @@ export function ToyList({ toys }) {
           >
             Add message
           </button>
+          <button>View details</button>
         </article>
       ))}
     </div>

@@ -4,7 +4,6 @@ export const SET_TOYS = 'SET_TOYS';
 
 let toys = await queryToys();
 if (!toys) toys = generateDummyToys();
-console.log("toys: ", toys);
 
 export const toyReducer = (state = {toys: toys}, action) => {
   switch (action.type) {

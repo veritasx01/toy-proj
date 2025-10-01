@@ -6,7 +6,6 @@ import { setToys } from "../store/actions/toy-actions";
 
 export function ToyIndex() {
   const toys = useSelector((state) => state.toyModule.toys);
-  console.log("index toys: ", toys);
 
   return (
     <section className="toy-index">

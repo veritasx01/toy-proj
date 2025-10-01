@@ -38,14 +38,17 @@
 }
 
 .toy-card {
+  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
   background: $can-red;
-  max-width: 18rem;
-  height: 100%;
+  width: 100%;
   padding: 1rem;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 10 / 14;
   text-align: left;
   border-radius: 1rem;
   button {
-    margin-top: 2rem;
+    margin: auto 0.1rem auto 0.1rem;
+    grid-row: 2;
   }
 }
