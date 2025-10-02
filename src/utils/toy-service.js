@@ -5,9 +5,40 @@ const TOY_KEY = 'TOY_KEY';
 
 createToys();
 
+function buildMasterCondition(filterBy) {
+  const conditions = [];
+
+  if (filterBy.name) {
+    conditions.push((toy) =>
+      toy.name.toLowerCase().includes(filterBy.name.toLowerCase())
+    );
+  }
+
+  if (filterBy.minPrice) {
+    const min = Number(filterBy.minPrice);
+    conditions.push((toy) => toy.price >= min);
+  }
+
+  if (filterBy.maxPrice) {
+    const max = Number(filterBy.maxPrice);
+    conditions.push((toy) => toy.price <= max);
+  }
+
+  if (filterBy.inStock !== undefined && filterBy.inStock !== 'any') {
+    if (filterBy.inStock === 'in-stock') {
+      conditions.push((toy) => toy.inStock);
+    } else {
+      conditions.push((toy) => !toy.inStock);
+    }
+  }
+
+  return (toy) => conditions.every((cond) => cond(toy));
+}
+
 export async function queryToys(filterBy = {}) {
   let queryResult = await storage.query(TOY_KEY);
-  return queryResult;
+  let masterCondition = buildMasterCondition(filterBy);
+  return queryResult.filter(masterCondition);
 }
 
 export async function getToy(toyId) {

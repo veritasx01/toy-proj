@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 
-export function ToyFilter() {
+export function ToyFilter({ onSetFilter }) {
   const [filterBy, setFilterBy] = useState({});
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const { name, type } = event.target;
+    let { value } = event.target;
+    if (type === "number") {
+      value = parseInt(value);
+    }
     setFilterBy((prevFilter) => ({
       ...prevFilter,
       [name]: value,
@@ -13,6 +17,7 @@ export function ToyFilter() {
 
   const onFilterSubmit = (event) => {
     event.preventDefault();
+    onSetFilter(filterBy);
   };
 
   useEffect(() => {
@@ -28,15 +33,24 @@ export function ToyFilter() {
       {/* add min max range comp for price */}
       <div className="form-col">
         <label>Min price</label>
-        <input type="number" name="minPrice" onChange={handleChange}></input>
+        <input type="number" name="minPrice" max={filterBy.maxPrice || Infinity} onChange={handleChange}></input>
       </div>
       <div className="form-col">
         <label>Max price</label>
-        <input type="number" name="maxPrice" onChange={handleChange}></input>
+        <input
+          type="number"
+          name="maxPrice"
+          min={filterBy.minPrice || 0}
+          onChange={handleChange}
+        ></input>
       </div>
       <div className="form-col">
         <label>Is in stock</label>
-        <input type="checkbox" name="isInStock" onChange={handleChange} />
+        <select name="inStock" onChange={handleChange}>
+          <option value={"any"}>Any</option>
+          <option value={"in-stock"}>In Stock</option>
+          <option value={"not-in-stock"}>Not in Stock</option>
+        </select>
       </div>
       <button>Filter</button>
     </form>

@@ -1,11 +1,17 @@
 import { ToyList } from "../components/ToyList";
 import { ToyFilter } from "../components/ToyFilter";
 import { useSelector } from "react-redux";
-import { generateDummyToys } from "../utils/toy-service";
+import { generateDummyToys, queryToys } from "../utils/toy-service";
 import { setToys } from "../store/actions/toy-actions";
+import { createCookieSessionStorage } from "react-router-dom";
 
 export function ToyIndex() {
   const toys = useSelector((state) => state.toyModule.toys);
+
+  const onSetFilter = async (filterBy) => {
+    const ftoys = await queryToys(filterBy);
+    setToys(ftoys);
+  }
 
   return (
     <section className="toy-index">
@@ -16,7 +22,7 @@ export function ToyIndex() {
         }}
       >generate toys
       </button>
-      <ToyFilter />
+      <ToyFilter onSetFilter={onSetFilter}/>
       <ToyList toys={toys} />
     </section>
   );
