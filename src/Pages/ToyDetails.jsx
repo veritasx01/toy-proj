@@ -1,11 +1,14 @@
 import { counterReducer } from "../utils/helpers";
 import { useReducer } from "react";
+import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-export function ToyDetails({ index = 0 }) {
+export function ToyDetails() {
+  const toyId = useParams("toyId").toyId;
   const toys = useSelector((state) => state.toyModule.toys);
+  let index = toyId ? toys.findIndex((toy) => toy._id === toyId) : 0;
   const modulo = toys.length;
-  
+
   const [counter, countDispatch] = useReducer(counterReducer, {
     count: index % modulo,
     modulo: modulo,

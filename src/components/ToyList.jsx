@@ -1,21 +1,22 @@
+import { useNavigate } from "react-router-dom";
+import { ToyPreview } from "./ToyPreview";
+
 export function ToyList({ toys }) {
+  const navigate = useNavigate();
   if (!toys) return <></>;
   return (
     <div className="toys-container">
       {toys.map((toy, idx) => (
         <article key={idx} className="toy-card">
-          <section>
-            <p>name: {toy.name}</p>
-            <p>price: {toy.price}$</p>
-            <p>labels: {toy && toy.labels && toy.labels.join(", ")}</p>
-            <p>inStock: {toy.inStock ? "yes" : "no"}</p>
-          </section>
+          <ToyPreview toy={toy} />
           <button
             onClick={() => console.log("TODO: implement reviews/messages")}
           >
             Add message
           </button>
-          <button>View details</button>
+          <button onClick={() => navigate(`/details/${toy._id}`)}>
+            View details
+          </button>
         </article>
       ))}
     </div>
