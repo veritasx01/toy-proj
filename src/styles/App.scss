@@ -11,12 +11,12 @@
   align-items: center;
   flex-direction: row-reverse;
   position: relative;
-  background: #eee;
+  background: $base-white;
   top: 0;
   left: 0;
   width: 100%;
   min-height: 3.55rem;
-  border-bottom: #555 1px solid;
+  border-bottom: $base-gray 1px solid;
 }
 .nav-bar nav {
   display: grid;
@@ -41,14 +41,14 @@
   position: relative;
   display: grid;
   grid-template-rows: 1fr auto;
-  background: #eee;
+  background: $base-white;
   color: $can-blue;
   width: 100%;
   padding: 1rem;
   aspect-ratio: 1;
   text-align: left;
   border-radius: 1rem;
-  border: #555 1px solid;
+  border: $base-gray 1px solid;
   box-shadow: 2px 2px $can-blue;
   button {
     margin: auto 0.1rem auto 0.1rem;
@@ -80,8 +80,8 @@
 .vertical-form {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 0.5rem auto 0.5rem;
   max-width: 30vw;
   justify-content: center;
-  align-items: center;
+  align-items: start;
 }

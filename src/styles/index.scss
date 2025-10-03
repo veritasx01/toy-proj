@@ -7,8 +7,8 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: rgba(255, 255, 255, 0.86);
+  color: $can-blue;
+  background-color: $base-white;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -99,7 +99,7 @@ h6 {
 
 a {
   font-weight: 500;
-  color: $text-dark-blue;
+  color: $can-blue;
   text-decoration: inherit;
 }
 a:hover {
@@ -121,12 +121,12 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 2px solid #555;
+  border: 2px solid $base-gray;
   padding: 0.5em 1em;
   font-size: 1rem;
   font-weight: 500;
   font-family: inherit;
-  background-color: #eee;
+  background-color: $base-white;
   color: $can-blue;
   cursor: pointer;
   transition: border-color 0.25s;
@@ -141,15 +141,37 @@ button:focus-visible {
 
 form {
   display: flex;
+  flex-wrap: wrap;
   place-content: center;
   color: $can-blue;
-  background: #eee;
+  background: $base-white;
   padding: 1rem;
   margin-bottom: 2rem;
   border-radius: 15px;
-  border: #555 1px solid;
+  border: $base-gray 1px solid;
   box-shadow: 3px 3px $can-blue;
-  > input {
+  input {
     max-width: 300px;
+    background: $base-white;
+    color: $base-gray;
+    border: $base-gray 2px solid;
+    border-radius: 3px;
   }
+  button {
+    margin: auto 0;
+  }
+}
+
+select[multiple]::-webkit-scrollbar {
+  display: none;
+}
+
+/* For Firefox */
+select[multiple] {
+  scrollbar-width: none;
+}
+
+/* For Internet Explorer and Edge */
+select[multiple] {
+  -ms-overflow-style: none;
 }
