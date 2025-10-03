@@ -72,12 +72,13 @@ function saveToStorage(key = TOY_KEY, value) {
   localStorage.setItem(key, JSON.stringify(value));
 }
 
-function createToys(amount = 5) {
+export function createToys(amount = 5, override = false) {
   let toys = loadFromStorage(TOY_KEY);
-  if (!toys || !toys.length) {
+  if (override || !toys || !toys.length) {
     toys = generateDummyToys(amount);
     saveToStorage(TOY_KEY, toys);
   }
+  return toys;
 }
 
 export function generateDummyToys(amount = 5) {

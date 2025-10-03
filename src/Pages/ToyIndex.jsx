@@ -1,7 +1,7 @@
 import { ToyList } from "../components/ToyList";
 import { ToyFilter } from "../components/ToyFilter";
 import { useSelector } from "react-redux";
-import { generateDummyToys, queryToys } from "../utils/toy-service";
+import { createToys, generateDummyToys, queryToys } from "../utils/toy-service";
 import { setToys } from "../store/actions/toy-actions";
 import { createCookieSessionStorage } from "react-router-dom";
 
@@ -17,7 +17,7 @@ export function ToyIndex() {
     <section className="main-view">
       <button
         onClick={() => {
-          const toys = generateDummyToys();
+          const toys = createToys(5, true);
           setToys(toys);
         }}
       >generate toys

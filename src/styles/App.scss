@@ -41,7 +41,8 @@
   position: relative;
   display: grid;
   grid-template-rows: 1fr auto;
-  background: $can-red;
+  background: #eee;
+  color: $can-blue;
   width: 100%;
   padding: 1rem;
   aspect-ratio: 1;
