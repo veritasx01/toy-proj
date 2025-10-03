@@ -7,27 +7,25 @@
 }
 
 .nav-bar {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
   position: relative;
   background: #eee;
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 4vh;
-  padding: 1rem;
+  min-height: 3.55rem;
   border-bottom: #555 1px solid;
-}
-.nav-bar section {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
 }
 .nav-bar nav {
   display: grid;
-  grid-column: 3;
   grid-auto-flow: column;
   gap: 3rem;
+  margin-right: 5rem;
 }
 
-.toy-index {
+.main-view {
   margin-top: 2rem;
   max-width: 1280px;
   margin: 0 auto;
@@ -35,7 +33,7 @@
 
 .toys-container {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
 }
 
@@ -49,6 +47,8 @@
   aspect-ratio: 1;
   text-align: left;
   border-radius: 1rem;
+  border: #555 1px solid;
+  box-shadow: 2px 2px $can-blue;
   button {
     margin: auto 0.1rem auto 0.1rem;
     grid-row: 2;
@@ -63,4 +63,24 @@
   label {
     margin-right: 0.25rem;
   }
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  grid-auto-flow: column;
+  margin-bottom: 0.5rem;
+  label {
+    width: 5rem;
+    margin-bottom: 0.25rem;
+  }
+}
+
+.vertical-form {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 30vw;
+  justify-content: center;
+  align-items: center;
 }

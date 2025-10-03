@@ -63,16 +63,12 @@ function getFilterFromSearchParams(searchParams) {
   return filterBy;
 }
 
-function createToy() {
-  return generateDummyToys(1)[0];
-}
-
-function loadFromStorage(key) {
+function loadFromStorage(key = TOY_KEY) {
   const data = localStorage.getItem(key);
   return data ? JSON.parse(data) : undefined;
 }
 
-function saveToStorage(key, value) {
+function saveToStorage(key = TOY_KEY, value) {
   localStorage.setItem(key, JSON.stringify(value));
 }
 

@@ -2,6 +2,7 @@ import { counterReducer } from "../utils/helpers";
 import { useReducer } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { ToyPreview } from "../components/ToyPreview";
 
 export function ToyDetails() {
   const toyId = useParams("toyId").toyId;
@@ -16,12 +17,13 @@ export function ToyDetails() {
 
   const inc = () => countDispatch({ type: "incrementModulo" });
   const dec = () => countDispatch({ type: "decrementModulo" });
-
+  
   return (
-    <section>
+    <section className="main-view">
       <h1>{counter.count}</h1>
       <button onClick={inc}>+</button>
       <button onClick={dec}>-</button>
+      <ToyPreview toy={toys[counter.count]}/>
     </section>
   );
 }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { MultiSelect } from "./MultiSelect";
 
 export function ToyFilter({ onSetFilter }) {
   const [filterBy, setFilterBy] = useState({});
@@ -33,7 +34,12 @@ export function ToyFilter({ onSetFilter }) {
       {/* add min max range comp for price */}
       <div className="form-col">
         <label>Min price</label>
-        <input type="number" name="minPrice" max={filterBy.maxPrice || Infinity} onChange={handleChange}></input>
+        <input
+          type="number"
+          name="minPrice"
+          max={filterBy.maxPrice || Infinity}
+          onChange={handleChange}
+        ></input>
       </div>
       <div className="form-col">
         <label>Max price</label>
@@ -51,6 +57,7 @@ export function ToyFilter({ onSetFilter }) {
           <option value={"in-stock"}>In Stock</option>
           <option value={"not-in-stock"}>Not in Stock</option>
         </select>
+        <MultiSelect></MultiSelect>
       </div>
       <button>Filter</button>
     </form>

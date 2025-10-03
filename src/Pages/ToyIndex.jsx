@@ -14,7 +14,7 @@ export function ToyIndex() {
   }
 
   return (
-    <section className="toy-index">
+    <section className="main-view">
       <button
         onClick={() => {
           const toys = generateDummyToys();

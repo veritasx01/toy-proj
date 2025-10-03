@@ -147,5 +147,8 @@ form {
   margin-bottom: 2rem;
   border-radius: 15px;
   border: #555 1px solid;
-  box-shadow: 3px 3px #555;
+  box-shadow: 3px 3px $can-blue;
+  > input {
+    max-width: 300px;
+  }
 }
