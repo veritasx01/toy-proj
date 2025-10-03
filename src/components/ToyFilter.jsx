@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { MultiSelect } from "./MultiSelect";
 
 export function ToyFilter({ onSetFilter }) {
   const [filterBy, setFilterBy] = useState({});
@@ -7,9 +6,11 @@ export function ToyFilter({ onSetFilter }) {
   const handleChange = (event) => {
     const { name, type } = event.target;
     let { value } = event.target;
+
     if (type === "number") {
       value = parseInt(value);
     }
+
     setFilterBy((prevFilter) => ({
       ...prevFilter,
       [name]: value,
@@ -26,13 +27,12 @@ export function ToyFilter({ onSetFilter }) {
   }, [filterBy]);
 
   return (
-    <form onSubmit={onFilterSubmit}>
-      <div className="form-col">
+    <form className="vertical-form" onSubmit={onFilterSubmit}>
+      <div className="form-row">
         <label>Name</label>
         <input type="text" name="name" onChange={handleChange} />
       </div>
-      {/* add min max range comp for price */}
-      <div className="form-col">
+      <div className="form-row">
         <label>Min price</label>
         <input
           type="number"
@@ -41,7 +41,7 @@ export function ToyFilter({ onSetFilter }) {
           onChange={handleChange}
         ></input>
       </div>
-      <div className="form-col">
+      <div className="form-row">
         <label>Max price</label>
         <input
           type="number"
@@ -50,14 +50,13 @@ export function ToyFilter({ onSetFilter }) {
           onChange={handleChange}
         ></input>
       </div>
-      <div className="form-col">
+      <div className="form-row">
         <label>Is in stock</label>
         <select name="inStock" onChange={handleChange}>
           <option value={"any"}>Any</option>
           <option value={"in-stock"}>In Stock</option>
           <option value={"not-in-stock"}>Not in Stock</option>
         </select>
-        <MultiSelect></MultiSelect>
       </div>
       <button>Filter</button>
     </form>
