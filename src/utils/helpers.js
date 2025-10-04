@@ -1,5 +1,3 @@
-import { act } from 'react';
-
 /**
  *
  * @param {number} start
@@ -65,4 +63,16 @@ export function counterReducer(state, action) {
     default:
       return state;
   }
+}
+
+export function debounce(func, delay) {
+  let timeoutId;
+  const debounced = (...args) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func(...args);
+    }, delay);
+  };
+  debounced.cancel = () => clearTimeout(timeoutId);
+  return debounced;
 }

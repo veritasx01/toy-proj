@@ -1,7 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { debounce } from "../utils/helpers";
 
 export function ToyFilter({ onSetFilter }) {
   const [filterBy, setFilterBy] = useState({});
+  const delay = 100;
+  const delayedCall = useRef(debounce(onSetFilter, delay));
+
+  useEffect(() => {
+    delayedCall.current = debounce(onSetFilter, delay);
+    return () => {
+      // cancel pending timeout on unmount
+      delayedCall.current.cancel?.();
+    };
+  }, [onSetFilter]);
 
   const handleChange = (event) => {
     const { name, type } = event.target;
@@ -19,7 +30,7 @@ export function ToyFilter({ onSetFilter }) {
 
   const onFilterSubmit = (event) => {
     event.preventDefault();
-    onSetFilter(filterBy);
+    delayedCall.current(filterBy);
   };
 
   useEffect(() => {
