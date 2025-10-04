@@ -149,7 +149,7 @@ form {
   margin-bottom: 2rem;
   border-radius: 15px;
   border: $base-gray 1px solid;
-  box-shadow: 3px 3px $can-blue;
+  box-shadow: 2px 2px $can-blue;
   input {
     max-width: 300px;
     background: $base-white;
@@ -162,16 +162,18 @@ form {
   }
 }
 
-select[multiple]::-webkit-scrollbar {
-  display: none;
+input[type="number"] {
+  appearance: textfield;
 }
 
-/* For Firefox */
-select[multiple] {
-  scrollbar-width: none;
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none; /* Chrome, Safari, Edge */
+  margin: 0;
 }
 
-/* For Internet Explorer and Edge */
-select[multiple] {
-  -ms-overflow-style: none;
+select {
+  background-color: $base-white;
+  color: $can-blue;
+  padding-left: 8px;
 }
