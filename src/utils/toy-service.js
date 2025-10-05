@@ -17,12 +17,6 @@ createToys();
 function buildMasterCondition(filterBy) {
   const conditions = [];
 
-  if (filterBy.name) {
-    conditions.push((toy) =>
-      toy.name.toLowerCase().includes(filterBy.name.toLowerCase())
-    );
-  }
-
   if (filterBy.minPrice) {
     const min = Number(filterBy.minPrice);
     conditions.push((toy) => toy.price >= min);
@@ -41,6 +35,13 @@ function buildMasterCondition(filterBy) {
     }
   }
 
+  if (filterBy.name) {
+    conditions.push((toy) =>
+      toy.name.toLowerCase().includes(filterBy.name.toLowerCase())
+    );
+  }
+
+  // can be sped up from O(nm) to O(n) with a hashmap
   if (filterBy.labels) {
     conditions.push((toy) =>
       filterBy.labels.every((lbl) => toy.labels.includes(lbl))
