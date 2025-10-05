@@ -1,5 +1,7 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { debounce } from "../utils/helpers";
+import { MultiSelect } from "./MultiSelect";
+import { labels } from "../utils/toy-service";
 
 export function ToyFilter({ onSetFilter }) {
   const [filterBy, setFilterBy] = useState({});
@@ -27,6 +29,10 @@ export function ToyFilter({ onSetFilter }) {
       [name]: value,
     }));
   };
+
+  const addLabels = useCallback((labels) => {
+    setFilterBy((prev) => ({ ...prev, labels }));
+  }, []);
 
   const onFilterSubmit = (event) => {
     event.preventDefault();
@@ -68,6 +74,9 @@ export function ToyFilter({ onSetFilter }) {
           <option value={"in-stock"}>In Stock</option>
           <option value={"not-in-stock"}>Not in Stock</option>
         </select>
+      </div>
+      <div className="form-row">
+        <MultiSelect options={labels} onStateChange={addLabels}></MultiSelect>
       </div>
       <button>Filter</button>
     </form>

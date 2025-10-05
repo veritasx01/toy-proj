@@ -2,7 +2,16 @@ import { base64Id, randomIntRange, getRandomSubset } from './helpers';
 import * as storage from './async-storage';
 
 const TOY_KEY = 'TOY_KEY';
-
+export const labels = [
+  'On wheels',
+  'Box game',
+  'Art',
+  'Baby',
+  'Doll',
+  'Puzzle',
+  'Outdoor',
+  'Battery Powered',
+];
 createToys();
 
 function buildMasterCondition(filterBy) {
@@ -83,16 +92,6 @@ export function createToys(amount = 5, override = false) {
 
 export function generateDummyToys(amount = 5) {
   const dummyList = [];
-  const labels = [
-    'On wheels',
-    'Box game',
-    'Art',
-    'Baby',
-    'Doll',
-    'Puzzle',
-    'Outdoor',
-    'Battery Powered',
-  ];
   for (let i = 0; i < amount; i++) {
     dummyList.push({
       _id: base64Id(),
