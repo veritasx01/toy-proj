@@ -41,6 +41,12 @@ function buildMasterCondition(filterBy) {
     }
   }
 
+  if (filterBy.labels) {
+    conditions.push((toy) =>
+      filterBy.labels.every((lbl) => toy.labels.includes(lbl))
+    );
+  }
+
   return (toy) => conditions.every((cond) => cond(toy));
 }
 
