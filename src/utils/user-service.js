@@ -30,3 +30,16 @@ export async function userExists(user) {
   const queriedUser = await getUser(user._id);
   return queriedUser !== null;
 }
+
+export async function signupUser(user) {
+  const doesUserExist = await userExists(user);
+  if (doesUserExist) return false;
+  saveUser(user);
+  return true;
+}
+
+export async function loginUser(user) {
+  const queriedUser = await getUser(user._id);
+  if (queriedUser === null) return false;
+  return queriedUser.password === user.password;
+}

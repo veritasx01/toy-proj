@@ -1,5 +1,29 @@
-export function LoginModal({ isLogin, isShown = true, toggleHandle }) {
-  const hiddenStr = isShown && !isLogin ? "" : " hidden";
+import { useState } from "react";
+
+export function LoginModal({ isShown = true, toggleHandle }) {
+  const [isLogin, setIsLogin] = useState(false);
+  const [formData, setFormData] = useState({});
+  const hiddenStr = isShown ? "" : " hidden";
+
+  const getData = (e) => {
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+    data.isAdmin = data.isAdmin === "on" ? true : false;
+    return data;
+  };
+
+  const onLogin = (e) => {
+    e.preventDefault();
+    const data = getData(e);
+    // TODO: login logic
+    console.log(data);
+  };
+  const onSignup = (e) => {
+    e.preventDefault();
+    const data = getData(e);
+    // TODO: signup logic
+    console.log(data);
+  };
 
   return (
     <div className={`modal-container${hiddenStr}`}>
@@ -12,25 +36,42 @@ export function LoginModal({ isLogin, isShown = true, toggleHandle }) {
         >
           X
         </button>
-        <form className="vertical-form">
-          <div className="form-row">
-            <label>username:</label>
-            <input type="text"></input>
-          </div>
-          <div className="form-row">
-            <label>fullname:</label>
-            <input type="text"></input>
-          </div>
-          <div className="form-row">
-            <label>password: </label>
-            <input type="text"></input>
-          </div>
-          <div className="form-row">
-            <label>is-admin: </label>
-            <input type="checkbox"></input>
-          </div>
-          <button>Signup</button>
-        </form>
+        {isLogin ? (
+          <form className="vertical-form" onSubmit={onLogin}>
+            <div className="form-row">
+              <label>username:</label>
+              <input name="username" type="text"></input>
+            </div>
+            <div className="form-row">
+              <label>password: </label>
+              <input name="password" type="text"></input>
+            </div>
+            <button>Login</button>
+          </form>
+        ) : (
+          <form className="vertical-form" onSubmit={onSignup}>
+            <div className="form-row">
+              <label>username:</label>
+              <input name="username" type="text"></input>
+            </div>
+            <div className="form-row">
+              <label>fullname:</label>
+              <input name="fullname" type="text"></input>
+            </div>
+            <div className="form-row">
+              <label>password: </label>
+              <input name="password" type="text"></input>
+            </div>
+            <div className="form-row">
+              <label>is-admin: </label>
+              <input name="isAdmin" type="checkbox"></input>
+            </div>
+            <button>Signup</button>
+          </form>
+        )}
+        <button onClick={() => setIsLogin((prev) => !prev)}>
+          {isLogin ? "click here to signup" : "click here to login"}
+        </button>
       </div>
     </div>
   );
