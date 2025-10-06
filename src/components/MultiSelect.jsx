@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { debounce } from "../utils/helpers";
 
 export function MultiSelect({ options, onStateChange }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,6 +17,13 @@ export function MultiSelect({ options, onStateChange }) {
       return val;
     });
   };
+
+  const filterOptions = debounce((e) => {
+    const lowerCaseval = e.target.value.toLowerCase();
+    setFilteredOptions(
+      options.filter((opt) => opt.toLowerCase().includes(lowerCaseval))
+    );
+  }, 10);
 
   useEffect(() => {
     onStateChange?.(selected);
@@ -39,14 +47,11 @@ export function MultiSelect({ options, onStateChange }) {
         onClick={() => setIsOpen((prev) => !prev)}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
-            console.log("enter");
-            const lowerCaseval = e.target.value.toLowerCase();
-            setFilteredOptions(
-              options.filter((opt) => opt.toLowerCase().includes(lowerCaseval))
-            );
+            filterOptions(e);
           }
-        }}
+        }} 
         autoComplete="off"
+        onChange={filterOptions}
       />
       <span
         onClick={() => setIsOpen(!isOpen)}
