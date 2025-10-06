@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 export function MultiSelect({ options, onStateChange }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState([]);
+  const [filteredOptions, setFilteredOptions] = useState(options);
   const dropdownRef = useRef(null);
 
   // Toggle option selection
@@ -33,13 +34,28 @@ export function MultiSelect({ options, onStateChange }) {
 
   return (
     <div ref={dropdownRef} style={{ position: "relative" }}>
-      <button onClick={() => setIsOpen((prev) => !prev)}>
-        {isOpen ? "Minimize" : "Maximize"} ({selected.length} selected)
-      </button>
+      <input
+        name="label-search"
+        onClick={() => setIsOpen((prev) => !prev)}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            console.log("enter");
+            const lowerCaseval = e.target.value.toLowerCase();
+            setFilteredOptions(
+              options.filter((opt) => opt.toLowerCase().includes(lowerCaseval))
+            );
+          }
+        }}
+        autoComplete="off"
+      />
+      <span
+        onClick={() => setIsOpen(!isOpen)}
+        className={isOpen ? "arrow left" : "arrow down"}
+      />
 
       {isOpen && (
         <div className="dropdown">
-          {options.map((option) => (
+          {filteredOptions.map((option) => (
             <label key={option}>
               <input
                 type="checkbox"

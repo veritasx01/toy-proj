@@ -76,6 +76,7 @@ export function ToyFilter({ onSetFilter }) {
         </select>
       </div>
       <div className="form-row">
+        <label>Labels</label>
         <MultiSelect options={labels} onStateChange={addLabels}></MultiSelect>
       </div>
       <button>Filter</button>

@@ -126,12 +126,13 @@
   position: absolute;
   top: 100%;
   left: 0;
-  border: 1px solid #ccc;
+  border: $base-gray 1px solid;
+  box-shadow: 2px 2px 1px $can-blue;
   background: $base-white;
   color: $can-blue;
   z-index: 1000;
   padding: 8px;
-  min-width: 100px;
+  min-width: 100%;
   label {
     display: block;
     cursor: pointer;
@@ -140,4 +141,28 @@
       margin: 5px;
     }
   }
+}
+
+.arrow {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.arrow.down {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #333;
+}
+
+
+.arrow.left {
+  width: 0;
+  height: 0;
+  margin-right: 4px;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid #333;
 }

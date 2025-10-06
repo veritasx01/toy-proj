@@ -107,6 +107,8 @@ export function generateDummyToys(amount = 5) {
       labels: getRandomSubset(labels, randomIntRange(1, 5)),
       createdAt: Date.now(),
       inStock: true,
+      msgs: [],
+      //msgs should contain object that have, id, txt, author
     });
   }
   return dummyList;
