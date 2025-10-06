@@ -26,6 +26,7 @@ export async function post(entityType, newEntity) {
 export async function put(entityType, updatedEntity) {
   const entities = await query(entityType);
   const idx = entities.findIndex((ent) => ent._id === updatedEntity._id);
+  if (idx < 0) console.log("idx!!!");
   if (idx < 0) return null;
   const entityToUpdate = { ...entities[idx], ...updatedEntity };
   entities.splice(idx, 1, entityToUpdate);

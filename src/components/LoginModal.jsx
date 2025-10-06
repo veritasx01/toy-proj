@@ -1,28 +1,30 @@
 import { useState } from "react";
+import { getUser, loginUser, signupUser } from "../utils/user-service";
+import { setGlobalUser } from "../store/actions/user-actions";
 
 export function LoginModal({ isShown = true, toggleHandle }) {
   const [isLogin, setIsLogin] = useState(false);
   const [formData, setFormData] = useState({});
   const hiddenStr = isShown ? "" : " hidden";
 
-  const getData = (e) => {
+  const onLogin = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+    if (loginUser(data)) {
+      setGlobalUser(data);
+      toggleHandle();
+    }
+  };
+
+  const onSignup = (e) => {
+    e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
     data.isAdmin = data.isAdmin === "on" ? true : false;
-    return data;
-  };
-
-  const onLogin = (e) => {
-    e.preventDefault();
-    const data = getData(e);
-    // TODO: login logic
-    console.log(data);
-  };
-  const onSignup = (e) => {
-    e.preventDefault();
-    const data = getData(e);
-    // TODO: signup logic
-    console.log(data);
+    if (signupUser(data)) {
+      setGlobalUser(data);
+    }
   };
 
   return (
