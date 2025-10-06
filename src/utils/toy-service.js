@@ -17,17 +17,17 @@ createToys();
 function buildMasterCondition(filterBy) {
   const conditions = [];
 
-  if (filterBy.minPrice) {
+  if (filterBy?.minPrice) {
     const min = Number(filterBy.minPrice);
     conditions.push((toy) => toy.price >= min);
   }
 
-  if (filterBy.maxPrice) {
+  if (filterBy?.maxPrice) {
     const max = Number(filterBy.maxPrice);
     conditions.push((toy) => toy.price <= max);
   }
 
-  if (filterBy.inStock !== undefined && filterBy.inStock !== 'any') {
+  if (filterBy?.inStock !== undefined && filterBy?.inStock !== 'any') {
     if (filterBy.inStock === 'in-stock') {
       conditions.push((toy) => toy.inStock);
     } else {
@@ -35,16 +35,16 @@ function buildMasterCondition(filterBy) {
     }
   }
 
-  if (filterBy.name) {
+  if (filterBy?.name) {
     conditions.push((toy) =>
-      toy.name.toLowerCase().includes(filterBy.name.toLowerCase())
+      toy.name.toLowerCase().includes(filterBy?.name.toLowerCase())
     );
   }
 
   // can be sped up from O(nm) to O(n) with a hashmap
-  if (filterBy.labels) {
+  if (filterBy?.labels) {
     conditions.push((toy) =>
-      filterBy.labels.every((lbl) => toy.labels.includes(lbl))
+      filterBy?.labels.every((lbl) => toy.labels.includes(lbl))
     );
   }
 
