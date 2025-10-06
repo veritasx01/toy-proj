@@ -178,3 +178,28 @@ select {
   color: $can-blue;
   padding-left: 8px;
 }
+
+input[type="checkbox"] {
+  appearance: none;
+  position: relative;
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid;
+  line-height: 1;
+  accent-color: $can-blue;
+  background: $base-white;
+}
+
+input[type="checkbox"]::before {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: $can-blue;
+  text-align: center;
+  white-space: pre;
+  content: " ";
+}
+
+input[type="checkbox"]:checked::before {
+  content: "\2713";
+}

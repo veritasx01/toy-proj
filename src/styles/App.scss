@@ -112,10 +112,11 @@
   color: $can-blue;
   background: $base-white;
   border-radius: 15px;
-  border: $base-gray 1px solid;
+  border: $base-gray 2px solid;
+  box-shadow: 2px 2px 1px $can-blue;
   height: fit-content;
   padding: 3.5rem 2rem 2rem;
-  button {
+  button:first-child {
     position: absolute;
     top: 0.5rem;
     left: 0.5rem;

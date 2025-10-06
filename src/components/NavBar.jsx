@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { LoginModal } from "./LoginModal";
+import { useSelector } from "react-redux";
 
 export function NavBar() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [isModalShown, setModalShown] = useState(false);
+  const currentUser = useSelector((state) => state.userModule.user)
+
   const toggle = () => {
     setModalShown((prev) => !prev);
   };
+
   return (
     <header className="nav-bar">
       <nav>
