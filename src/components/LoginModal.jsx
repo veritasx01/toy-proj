@@ -7,12 +7,13 @@ export function LoginModal({ isShown = true, toggleHandle }) {
   const [formData, setFormData] = useState({});
   const hiddenStr = isShown ? "" : " hidden";
 
-  const onLogin = (e) => {
+  const onLogin = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
     if (loginUser(data)) {
-      setGlobalUser(data);
+      const user = await getUser(data.username);
+      setGlobalUser(user);
       toggleHandle();
     }
   };

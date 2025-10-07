@@ -13,6 +13,7 @@ export function overwriteUsers(key = USER_KEY, value) {
 }
 
 export async function getUser(username) {
+  console.log('username; ', username);
   const user = await storage.get(USER_KEY, username);
   return user;
 }
@@ -27,7 +28,7 @@ export async function saveUser(user) {
   if (exists) {
     return storage.put(USER_KEY, user);
   }
-  return storage.post(USER_KEY, user);
+  return storage.post(USER_KEY, user, user.username);
 }
 
 export async function userExists(user) {

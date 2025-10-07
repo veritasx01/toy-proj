@@ -15,8 +15,9 @@ export async function get(entityType, entityId) {
   return entity || null;
 }
 
-export async function post(entityType, newEntity) {
-  newEntity._id = base64Id();
+export async function post(entityType, newEntity, overrideId = null) {
+  if (!overrideId) newEntity._id = base64Id();
+  else newEntity._id = overrideId;
   const entities = await query(entityType);
   entities.push(newEntity);
   _save(entityType, entities);
