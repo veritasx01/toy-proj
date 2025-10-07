@@ -7,9 +7,10 @@
 }
 
 .nav-bar {
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
-  flex-direction: row-reverse;
   position: relative;
   background: $base-white;
   top: 0;
@@ -22,7 +23,8 @@
   display: grid;
   grid-auto-flow: column;
   gap: 3rem;
-  margin-right: 5rem;
+  grid-column: 3;
+  margin-right: 3rem;
 }
 
 .main-view {
@@ -166,4 +168,14 @@
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
   border-right: 5px solid #333;
+}
+
+.user-dashboard {
+  display: flex;
+  grid-auto-flow: column;
+  margin: 0 auto;
+  align-items: center;
+  * {
+    margin: 0 0.5rem;
+  }
 }

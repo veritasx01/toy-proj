@@ -76,3 +76,7 @@ export function debounce(func, delay) {
   debounced.cancel = () => clearTimeout(timeoutId);
   return debounced;
 }
+
+export function isObjectEmpty(object) {
+  return Object.keys(object).length;
+}
